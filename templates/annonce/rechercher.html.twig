@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Voici les résultats pour {{search}}{% endblock %}
+
+{% block body %}
+
+{%for annonce in annonces%}
+
+<div class="card w-75">
+  <div class="card-body">
+    <h5 class="card-title">{{annonce.titre}}</h5>
+    <a href="{{ path('annonce.detail', {id: annonce.id}) }}" class="btn btn-primary">Voir l'annonce</a>
+    <a href="{{ path('annonce.modifier', {id: annonce.id}) }}" class="btn btn-primary">Modifier</a>
+    <a href="{{ path('annonce.supprimer', {id: annonce.id}) }}" class="btn btn-primary">Supprimer</a>
+  </div>
+</div>
+
+{%endfor%}
+
+{% endblock %}

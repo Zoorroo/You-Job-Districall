@@ -1,0 +1,18 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/axentix@0.5.3/dist/css/axentix.min.css"> {% block stylesheets %}{% endblock %}
+		<link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+{% block title %}Inscription Districall{% endblock %}
+{% block body %}
+   <div class="row">
+       <div class="col-6 offset-3">
+           <div class="card bg-light">
+               <div class="card-body">
+                   <h1 class="text-center">S'inscrire</h1>
+                   {{ form_start(registrationForm) }}
+                      
+                       <button class="btn btn-primary btn-block">S'inscrire</button>
+                   {{ form_end(registrationForm) }}
+               </div>
+           </div>
+       </div>
+   </div>
+{% endblock %}

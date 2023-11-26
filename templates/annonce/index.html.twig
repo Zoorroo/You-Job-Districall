@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste d'annonces{% endblock %}
+
+{% block body %}
+
+{%for annonce in annonces|reverse%}
+
+<div class="card w-75">
+  <div class="card-body">
+    <h5 class="card-title">{{annonce.titre}}</h5>
+    <p>{{annonce.description[:200]}}...</p>
+    <a href="{{ path('annonce.detail', {id: annonce.id}) }}" class="btn btn-primary">Voir l'annonce</a>
+    {% if annonce.iduser == iduser %}
+    <a href="{{ path('annonce.modifier', {id: annonce.id}) }}" class="btn btn-primary">Modifier</a>
+    <a href="{{ path('annonce.supprimer', {id: annonce.id}) }}" class="btn btn-primary">Supprimer</a>
+    {%endif%}
+  </div>
+</div>
+{%endfor%}
+
+{% endblock %}

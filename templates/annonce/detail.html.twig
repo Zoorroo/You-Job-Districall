@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{annonce_id.titre}}{% endblock %}
+
+{% block body %}
+
+<div class="card w-75">
+  <div class="card-body">
+    <h5 class="card-title">{{annonce_id.titre}}</h5>
+    
+    <p><strong>Vous devez vous connecter ou créer un compte pour créer un blog</strong></p>
+
+    
+    <p class="card-text">Description :<br>{{annonce_id.description}}</p>
+   
+    
+  </div>
+</div>
+
+{% endblock %}

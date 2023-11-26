@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+<h6>Bienvenue sur le projet de Districall, la plateforme de référence pour ajouter des blogs </h6>
+{{form(form)}}
+
+<a href="{{ path('annonce.new')}}" class="btn btn-primary">Créer un blog</a>
+{%set foo=0%}
+
+<h4>Les 5 derniers blogs</h4>
+{%for annonce in annonces|reverse%}
+
+{%if foo<5%}
+<div class="card w-75">
+  <div class="card-body">
+    <h5 class="card-title">{{annonce.titre}}</h5>
+    <p>{{annonce.description[:200]}}...</p>
+    <a href="{{ path('annonce.detail', {id: annonce.id}) }}" class="btn btn-primary">Voir le blog</a>
+    {% if annonce.iduser == iduser %}
+    <a href="{{ path('annonce.modifier', {id: annonce.id}) }}" class="btn btn-primary">Modifier</a>
+    <a href="{{ path('annonce.supprimer', {id: annonce.id}) }}" class="btn btn-primary">Supprimer</a>
+    	
+			
+
+    {%endif%}
+  </div>
+</div>
+{%set foo=foo+1%}
+{%endif%}
+
+
+
+{%endfor%}
+{% endblock %}

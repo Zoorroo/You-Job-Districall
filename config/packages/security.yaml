@@ -1,0 +1,41 @@
+security:
+    enable_authenticator_manager: true
+    # https://symfony.com/doc/current/security.html#registering-the-user-hashing-passwords
+    password_hashers:
+        Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
+    # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
+    
+    providers:
+        # used to reload user from session & other features (e.g. switch_user)
+        app_user_provider:
+            entity:
+                class: App\Entity\Utilisateur
+                property: email  
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+
+            lazy: true
+            provider: app_user_provider
+            custom_authenticator : App\Security\YoujobAuthenticator1Authenticator
+            logout:
+                path: app_logout
+                # where to redirect after logout
+                # target: app_any_route
+
+    # Dans la partie access_control nous définissons les routes protégées
+    access_control:
+        - { path: ^/dashboard, roles: ROLE_ADMIN }
+        - { path: app_home, roles: ROLE_USER }
+        - { path: app_home, roles: ROLE_ENTREPRISE }
+
+    # La partie role_hierarchy contient la hiérarchie des rôles
+    
+    role_hierarchy:
+        ROLE_USER: ROLE_USER
+        ROLE_ENTREPRISE: ROLE_ENTREPRISE
+        ROLE_ADMIN: ROLE_ADMIN
+     
+                

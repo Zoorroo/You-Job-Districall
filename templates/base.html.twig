@@ -1,0 +1,85 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}Welcome!
+			{% endblock %}
+		</title>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/axentix@0.5.3/dist/css/axentix.min.css"> {% block stylesheets %}{% endblock %}
+		<link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+	</head>
+	<body class="layout with-sidenav">
+		<header>
+		<nav class="navbar primary" style= 'background-color:#325c7d'>
+		<div>
+			<a href="{{ path('app_home') }}" style="margin-left: 10px"class="navbar-brand">Districall</a>
+		</div>
+		{%if iduser!=NULL%}
+			<div style="display: flex; justify-content: flex-end; align-items: center; margin-left: 72%"; >
+				{% if app.user %}
+				<a href="{{ path('annonce.liste')}}" class="sidenav-link">
+						<svg xmlns="http://www.w3.org/2000/svg" style="position:relative;top:10px" width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M5.52 19c.64-2.2 1.84-3 3.22-3h6.52c1.38 0 2.58.8 3.22 3"/><circle cx="12" cy="10" r="3"/><circle cx="12" cy="12" r="10"/></svg>
+						<p style="display:inline;">{{ app.user.email }}</p>
+					</a>
+				{% endif %}
+            	<form style= "margin-bottom: 0"; action="{{ path('app_logout') }}" method="post">
+				<button type="submit" style="position:relative;right:0px; background-color: transparent; border:none; color: white;padding-left:10px; cursor: pointer;" class="sidenav-link";>
+					<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="18" y1="8" x2="23" y2="13"></line><line x1="23" y1="8" x2="18" y2="13"></line></svg>
+					<d style="vertical-align: super;">Déconnexion</d>
+				</button>
+				</form>
+            </div>
+		</nav>
+		{%else%}
+		<div style="display: flex; justify-content: flex-end; align-items: center;position: absolute; right: 0; padding: 10px">
+			<a href="{{path('app_login')}}" >
+  			<svg xmlns="http://www.w3.org/2000/svg" style ="position:relative; top:7px"  width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v18h-6M10 17l5-5-5-5M13.8 12H3"/></svg>
+				<button style="position:relative; background-color: transparent; border:none; color: white; cursor: pointer;" class="navbar-brand">Connexion</button>
+			</a>
+			</div>
+		{%endif%}
+
+		</header>
+		<div style = 'font-size: 20px; background-color: rgb(158, 171, 196);color: white' id="example-sidenav" class="sidenav large fixed white"; >
+					<div style = "float:right";">
+
+        </div>
+			
+			<a href="{{ path('annonce.liste')}}" class="sidenav-link">Voir les blogs</a>
+			
+		
+            {#<form action="{{ path('app_logout') }}" method="post">#}
+
+
+
+			<div class="sidenav-header">
+				<button data-target="example-sidenav" class="sidenav-trigger">
+					<i class="fas fa-times">
+						<svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>					</i>
+				</button>
+			</div>
+		</div>
+		
+      
+		<main style="margin-left: 20;margin-right: 5;">
+			<button data-target="example-sidenav" class="btn press blue sidenav-trigger hide-md-up">
+				<svg xmlns="http://www.w3.org/2000/svg" width="37" height="37" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+			</button>
+			{% block body %}{% endblock %}
+		</main>
+	
+		
+		<footer class="footer primary" style= 'background-color:#325c7d'>
+			<p>- Districall - </p>
+			
+		</footer>
+
+
+		<script src="https://cdn.jsdelivr.net/npm/axentix@0.5.3/dist/js/axentix.min.js"></script>
+		{% block javascripts %}{% endblock %}
+		<script>
+			var sidenav = new Sidenav('#example-sidenav');
+		</script>
+		<script src="{{ asset('js/scripts.js') }}"></script>
+	</body>
+</html>
